@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Footer } from './Footer';
+import { AccountMenu } from './AccountMenu';
 
 const drawerWidth = 240;
 
@@ -107,7 +108,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 interface Props {
   children: React.ReactNode;
 }
-export const MiniDrawer: React.FC<Props> = ({children}) => {
+export const MainLayout: React.FC<Props> = ({children}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -138,9 +139,20 @@ export const MiniDrawer: React.FC<Props> = ({children}) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between', // 將內容兩側對齊
+              alignItems: 'center', // 垂直置中
+              flexGrow: 1,
+            }}
+          >
+            <Typography variant="h6" noWrap component="div">
+              Dashboard
+            </Typography>
+            <AccountMenu />
+
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
